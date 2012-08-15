@@ -28,7 +28,7 @@
 #endif
 
 static unsigned long pwm_val = 50; /* duty in percent */
-static int pwm_duty = 28230; /* duty value, 37640=100% 28230=50%, 18820=0% */
+static int pwm_duty = 30000; /* duty value, 37640=100% 28230=50%, 18820=0% */
 
 struct vibrator_drvdata {
 	struct max8997_motor_data *pdata;
