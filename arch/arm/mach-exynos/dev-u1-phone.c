@@ -65,7 +65,7 @@ static int __init c1_init_phone_interface(void)
 		platform_device_register(&sec_device_dpram_recovery);
 	else
 		platform_device_register(&sec_device_dpram);
-	return 0;
 #endif
+	return 0;
 }
 device_initcall(c1_init_phone_interface);
