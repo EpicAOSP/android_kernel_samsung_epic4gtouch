@@ -59,7 +59,7 @@ struct platform_device sec_device_dpram_recovery = {
 
 static int __init c1_init_phone_interface(void)
 {
-#ifndef(CONFIG_SAMSUNG_PHONE_TTY)
+#ifndef SAMSUNG_PHONE_TTY
 	LOGE("c1_init_phone_interface: %d\n", c1_is_bootmode_recovery);
 	if (c1_is_bootmode_recovery)
 		platform_device_register(&sec_device_dpram_recovery);
