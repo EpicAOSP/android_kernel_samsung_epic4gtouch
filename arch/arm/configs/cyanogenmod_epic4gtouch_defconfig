@@ -2034,7 +2034,7 @@ CONFIG_BACKLIGHT_CLASS_DEVICE=y
 # Display device support
 #
 # CONFIG_DISPLAY_SUPPORT is not set
-
+CONFIG_MDNIE_SUPPORT=y
 #
 # Console display driver support
 #
