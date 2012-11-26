@@ -99,8 +99,13 @@ touchkey register
 static int touchkey_keycode[5] = { 0,
 	KEY_MENU, KEY_ENTER, KEY_BACK, KEY_END };
 #elif defined(CONFIG_TARGET_LOCALE_NA)
+#if defined(CONFIG_MACH_U1_NA_SPR_EPIC2_REV00)
 static int touchkey_keycode[5] = { NULL,
+	KEY_MENU, KEY_HOME, KEY_SEARCH, KEY_BACK };
+#else
+static int touchkey_keycode[5] = { 0,
 	KEY_SEARCH, KEY_BACK, KEY_HOME, KEY_MENU };
+#endif
 #else
 static int touchkey_keycode[3] = { 0, KEY_MENU, KEY_BACK };
 #endif
