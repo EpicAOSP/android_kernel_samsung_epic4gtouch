@@ -662,6 +662,8 @@ __tagtable(ATAG_REVISION, parse_tag_revision);
 
 static int __init parse_tag_cmdline(const struct tag *tag)
 {
+char new_command_line[COMMAND_LINE_SIZE];
+int n;
 #if defined(CONFIG_CMDLINE_EXTEND)
 	strlcat(default_command_line, " ", COMMAND_LINE_SIZE);
 	strlcat(default_command_line, tag->u.cmdline.cmdline,
@@ -672,7 +674,17 @@ static int __init parse_tag_cmdline(const struct tag *tag)
 	strlcpy(default_command_line, tag->u.cmdline.cmdline,
 		COMMAND_LINE_SIZE);
 #endif
-	return 0;
+#if defined(CONFIG_CMDLINE_APPEND_SERIAL)
+	pr_warning("Appending: androidboot.serialno=%08x%08x\n",
+		system_serial_high, system_serial_low);
+	n = snprintf(NULL, 0, "%s androidboot.serialno=%08x%08x\n",
+		tag->u.cmdline.cmdline, system_serial_high, system_serial_low);
+	snprintf(new_command_line, n, "%s androidboot.serialno=%08x%08x\n",
+		tag->u.cmdline.cmdline, system_serial_high, system_serial_low);
+	strlcpy(default_command_line, new_command_line,
+		COMMAND_LINE_SIZE);
+#endif
+		return 0;
 }
 
 __tagtable(ATAG_CMDLINE, parse_tag_cmdline);
